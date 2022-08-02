@@ -6,9 +6,8 @@
             "version": "v2",
             "host": "http://localhost",            
         },
-        "production": {
-            "host": "https://",
-            
+        "k8S": {
+            "host": "http://localhost:30193",            
         }
     }
 }

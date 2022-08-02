@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: platform-deploy
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels: 
       app: platformservices
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: platformservices
-          image: evaldoavelar/platformservices:1.0
+          image: evaldoavelar/platformservices:1.1
           ports:
           - containerPort: 80

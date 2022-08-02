@@ -1,7 +1,7 @@
 ### variables are defined at settings.json file inside .vscode
 ### Ctrl+Alt+e to change the environment
 
-GET {{host}}/api/platforms HTTP/1.1
+GET http://localhost:30193/api/platforms HTTP/1.1
 
 ###
 
@@ -13,7 +13,7 @@ POST {{host}}/api/platforms HTTP/1.1
 content-type: application/json
 
 {    
-    "name": "Delphsi",
+    "name": "Delphi",
     "published": "Embarcadero",
     "cost": "$ 5000"
   }
