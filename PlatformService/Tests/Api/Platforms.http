@@ -1,16 +1,19 @@
-GET https://127.0.0.1:7102/api/platforms HTTP/1.1
+### variables are defined at settings.json file inside .vscode
+### Ctrl+Alt+e to change the environment
+
+GET {{host}}/api/platforms HTTP/1.1
 
 ###
 
-GET https://127.0.0.1:7102/api/platforms/1 HTTP/1.1
+GET {{host}}/api/platforms/1 HTTP/1.1
 
 ###
 
-POST https://127.0.0.1:7102/api/platforms HTTP/1.1
+POST {{host}}/api/platforms HTTP/1.1
 content-type: application/json
 
 {    
-    "name": "Delphi",
+    "name": "Delphsi",
     "published": "Embarcadero",
     "cost": "$ 5000"
   }
