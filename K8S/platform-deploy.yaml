@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: platform-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+      app: platformservices
+  template:
+    metadata:
+      labels:
+        app: platformservices
+    spec:
+      containers:
+        - name: platformservices
+          image: evaldoavelar/platformservices:1.0
+          ports:
+          - containerPort: 80
