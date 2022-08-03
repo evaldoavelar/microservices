@@ -1,7 +1,10 @@
 ### variables are defined at settings.json file inside .vscode
 ### Ctrl+Alt+e to change the environment
 
-GET http://localhost:30193/api/platforms HTTP/1.1
+GET http://localhost:30593/api/platforms HTTP/1.1
+
+###
+GET http://localhost:80/api/platforms HTTP/1.1
 
 ###
 
