@@ -7,7 +7,7 @@
             "host": "http://localhost",            
         },
         "k8S": {
-            "host": "http://localhost:30193",            
+            "host": "http://192.168.49.2:30200",            
         }
     }
 }

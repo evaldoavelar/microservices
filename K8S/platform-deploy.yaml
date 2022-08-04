@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: platform-deploy
+  labels:
+    app: platformservices
 spec:
   replicas: 1
   selector:
@@ -15,5 +17,6 @@ spec:
       containers:
         - name: platformservices
           image: evaldoavelar/platformservices:1.1
+          imagePullPolicy: Never
           ports:
           - containerPort: 80
