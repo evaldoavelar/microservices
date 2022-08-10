@@ -2,9 +2,11 @@
     "rest-client.environmentVariables": {
 
         "$shared": {},
-        "docker": {
-            "version": "v2",
-            "host": "http://localhost",            
+        "platform": {            
+            "host": "http://localhost:5184",            
+        },
+        "commands": {            
+            "host": "http://localhost:6000",            
         },
         "k8S": {
             "host": "http://192.168.49.2:30200",            

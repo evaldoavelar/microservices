@@ -1,0 +1,4 @@
+### variables are defined at settings.json file inside .vscode
+### Ctrl+Alt+e to change the environment
+
+GET {{host}}/api/c/platforms
