@@ -1,10 +1,12 @@
 using PlatformService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using PlatformService.SyncDataServices.http;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
+builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDBContext>(opt => opt.UseInMemoryDatabase("inMen"));

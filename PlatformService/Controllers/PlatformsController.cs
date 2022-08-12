@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlatformService.Data;
 using PlatformService.DTO;
 using PlatformService.Models;
+using PlatformService.SyncDataServices.http;
 
 namespace PlatformService.Controllers
 {
@@ -12,9 +13,11 @@ namespace PlatformService.Controllers
     {
         private readonly IPlatformRepo platformRepo;
         private readonly IMapper mapper;
+        private readonly ICommandDataClient commandDataClient;
 
-        public PlatformsController(IPlatformRepo platformRepo, IMapper mapper)
+        public PlatformsController(IPlatformRepo platformRepo, IMapper mapper, ICommandDataClient commandDataClient)
         {
+            this.commandDataClient = commandDataClient;
             this.platformRepo = platformRepo;
             this.mapper = mapper;
         }
@@ -49,7 +52,7 @@ namespace PlatformService.Controllers
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<Platform> CreatePlatform(PlatformCreatDTO creatDTO)
+        public async Task<ActionResult<Platform>> CreatePlatform(PlatformCreatDTO creatDTO)
         {
             if (ModelState.IsValid == false)
                 return BadRequest("platfotm is no valid!");
@@ -57,8 +60,18 @@ namespace PlatformService.Controllers
             var platform = this.mapper.Map<PlatformCreatDTO, Platform>(creatDTO);
             this.platformRepo.CreatePlatform(platform);
             this.platformRepo.SaveChanges();
-           
+
             var dto = this.mapper.Map<Platform, PlatformReadDTO>(platform);
+
+            try
+            {
+                await this.commandDataClient.SendPlatformCommand(dto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($" could not send synchronously {ex.Message} {ex.InnerException}");
+            }
+
             return CreatedAtRoute(nameof(GetPlatformById), new { id = dto.Id }, dto);
         }
 
