@@ -6,7 +6,11 @@ using PlatformService.SyncDataServices.http;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
-builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>()
+             .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
+            {
+               ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
+            });
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDBContext>(opt => opt.UseInMemoryDatabase("inMen"));

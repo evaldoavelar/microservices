@@ -17,3 +17,6 @@ content-type: application/json
     "published": "Embarcadero",
     "cost": "$ 5000"
   }
+
+###
+#GET https://localhost:6001/api/c/platforms
